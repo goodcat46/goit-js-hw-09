@@ -44,7 +44,7 @@ let timer = {
   start(timerDeadLine) {
     this.intervalId = setInterval(() => {
       let dif = timerDeadLine - Date.now();
-      console.log(intervalId);
+      console.log(this.intervalId);
       if (dif <= 0) {
         this.stop();
         return;
