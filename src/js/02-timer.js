@@ -29,7 +29,6 @@ btnStartTimer.addEventListener('click', event => {
     dateInputEl.disabled = true;
     btnStartTimer.disabled = true;
     timer.start(timerDeadLine);
-    console.log(object);
     return;
   } else {
     alert(`Виберіть дату та час у майбутньому`);
@@ -44,7 +43,7 @@ let timer = {
   start(timerDeadLine) {
     this.intervalId = setInterval(() => {
       let dif = timerDeadLine - Date.now();
-      console.log(this.intervalId);
+
       if (dif <= 0) {
         this.stop();
         return;
