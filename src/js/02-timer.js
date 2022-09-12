@@ -29,6 +29,7 @@ btnStartTimer.addEventListener('click', event => {
     dateInputEl.disabled = true;
     btnStartTimer.disabled = true;
     timer.start(timerDeadLine);
+    console.log(object);
     return;
   } else {
     alert(`Виберіть дату та час у майбутньому`);
@@ -41,8 +42,9 @@ let dateFlatpickrInput = flatpickr('#datetime-picker', options);
 let timer = {
   intervalId: null,
   start(timerDeadLine) {
-    intervalId = setInterval(() => {
+    this.intervalId = setInterval(() => {
       let dif = timerDeadLine - Date.now();
+      console.log(intervalId);
       if (dif <= 0) {
         this.stop();
         return;
@@ -61,7 +63,7 @@ let timer = {
   },
 
   stop() {
-    clearInterval(intervalId);
+    clearInterval(this.intervalId);
   },
   pad(value) {
     return String(value).padStart(2, 0);
