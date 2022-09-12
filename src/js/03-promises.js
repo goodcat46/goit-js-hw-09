@@ -37,11 +37,11 @@ formElement.addEventListener('submit', event => {
     createPromise(i, inputDelay)
     //* у випадку RESOLVE спрацює наш THEN. помилку він проігнорить
       .then(({ position, delay }) => {
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        console.log(`✅ Fulfilled promise ${position += 1} in ${delay}ms`);
       })
       //* у випадку помилки, її зловить CATCH
       .catch(({ position, delay }) => {
-        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        console.log(`❌ Rejected promise ${position += 1} in ${delay}ms`);
       });
       //* на кожній ітерації затримка збільшується
     inputDelay += inputStep;

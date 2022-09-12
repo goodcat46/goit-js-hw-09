@@ -21,20 +21,20 @@ const options = {
     timerDeadLine = selectedDates[0];
     console.log(timerDeadLine);
     btnStartTimer.disabled = false;
-    btnStartTimer.addEventListener('click', event => {
-      let { target } = event;
-      if (timerDeadLine >= Date.now()) {
-        dateInputEl.disabled = true;
-        btnStartTimer.disabled = true;
-        timer.start(timerDeadLine);
-        return;
-      } else {
-        alert(`Виберіть дату та час у майбутньому`);
-        return;
-      }
-    });
   },
 };
+btnStartTimer.addEventListener('click', event => {
+  let { target } = event;
+  if (timerDeadLine >= Date.now()) {
+    dateInputEl.disabled = true;
+    btnStartTimer.disabled = true;
+    timer.start(timerDeadLine);
+    return;
+  } else {
+    alert(`Виберіть дату та час у майбутньому`);
+    return;
+  }
+});
 //* ініціалізація календарика
 let dateFlatpickrInput = flatpickr('#datetime-picker', options);
 //*todo ТАЙМЕР ЗАПИСАНИЙ ОБЄКТОМ
@@ -45,27 +45,26 @@ let timer = {
       let dif = timerDeadLine - Date.now();
       if (dif <= 0) {
         this.stop();
-        return
+        return;
       }
       let { days, hours, minutes, seconds } = this.convertMs(dif);
 
-      let secondsEl= (document.querySelector('[data-seconds]').textContent =
+      let secondsEl = (document.querySelector('[data-seconds]').textContent =
         this.pad(seconds));
-      let minutesEl= (document.querySelector('[data-minutes]').textContent =
+      let minutesEl = (document.querySelector('[data-minutes]').textContent =
         this.pad(minutes));
-      let hoursEl= (document.querySelector('[data-hours]').textContent =
+      let hoursEl = (document.querySelector('[data-hours]').textContent =
         this.pad(hours));
-      let daysEl= (document.querySelector('[data-days]').textContent =
+      let daysEl = (document.querySelector('[data-days]').textContent =
         this.pad(days));
-
     }, 1000);
   },
 
   stop() {
     clearInterval(intervalId);
   },
-  pad(value){
-    return String(value).padStart(2,0)
+  pad(value) {
+    return String(value).padStart(2, 0);
   },
   convertMs(ms) {
     // Number of milliseconds per unit of time
